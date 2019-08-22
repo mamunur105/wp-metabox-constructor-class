@@ -1,11 +1,13 @@
 <?php
 
+	//	https://github.com/MatthewKosloski/wp-metabox-constructor-class#installation
+
 require_once("metabox_constructor_class.php");
 
 $metabox = new Metabox_Constructor(array(
 	'id' => 'metabox_id',
 	'title' => __('Metabox Demo', 'experiment_functionality'),
-	'screen' => 'post'
+	'screen' => 'popups_creator'
 ));
 
 $metabox_repeater_block15_fields[] = $metabox->addText(array(
@@ -18,6 +20,17 @@ $metabox_repeater_block15_fields[] = $metabox->addTextArea(array(
 	'label' => 'Product Description'
 ), true);
 
+
+
+$metabox_repeater_block15_fields[] = $metabox->addWysiwyg(array(
+	'id' => 'metabox_wysiwyg_field',
+	'label' => 'WYSIWYG Field',
+	'desc' => 'You can use a WYSIWYG editor to facilitate the management of HTML content.'
+));
+
+// $metabox_repeater_block15_fields[] = 
+
+
 $metabox->addRepeaterBlock(array(
 	'id' => 'metabox_repeater_block15',
 	'label' => 'Repeater Block Field',
@@ -26,11 +39,13 @@ $metabox->addRepeaterBlock(array(
 	'single_label' => 'Product'
 ));
 
-$metabox_repeater_block15_fields[] = $metabox->addWysiwyg(array(
-	'id' => 'metabox_wysiwyg_field',
-	'label' => 'WYSIWYG Field',
-	'desc' => 'You can use a WYSIWYG editor to facilitate the management of HTML content.'
+
+$metabox->addGallery(array(
+	'id' => 'metabox_image_field_gallery_',
+	'label' => 'Gallery Image Upload Field',
+	'desc' => 'Upload an image, or change it, by clicking the button below the preview.'
 ));
+
 
 $metabox->addCheckbox(array(
 	'id' => 'metabox_checkbox_field',
@@ -50,21 +65,29 @@ $metabox->addRadio(
 	)
 );
 
-
-$metabox->addImage(array(
-	'id' => 'metabox_image_field2',
-	'label' => 'Image Upload Field',
-	'desc' => 'Upload an image, or change it, by clicking the button below the preview.'
-));
-
 $metabox->addText(array(
 	'id' => 'metabox_text_field',
 	'label' => 'Text Field'
 ));
+
+
+$metabox->addGallery(array(
+	'id' => 'metabox_image_field_gallery',
+	'label' => 'Gallery Image Upload Field',
+	'desc' => 'Upload an image, or change it, by clicking the button below the preview.'
+));
+
+
 
 $metabox->addTextArea(array(
 	'id' => 'metabox_textarea_field',
 	'label' => 'Textarea Field'
 ));
 
-?>
+
+
+$metabox->addImage(array(
+	'id' => 'metabox_image_field2',
+	'label' => 'Image Upload Field',
+	'desc' => 'Upload an image, or change it, by clicking the button below the preview.'
+));
