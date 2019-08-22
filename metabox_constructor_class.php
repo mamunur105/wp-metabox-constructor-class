@@ -406,7 +406,7 @@
 				);
 
 				$count = 0;
-				if(count($meta) > 0 && is_array($meta)) {
+				if(is_array($meta) &&  count($meta) > 0 ) {
 					foreach($meta as $m) {
 						$this->get_repeated_block($field, $m, $count);
 						$count++;
