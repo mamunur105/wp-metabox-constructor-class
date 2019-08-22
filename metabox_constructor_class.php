@@ -292,7 +292,14 @@
 					return $field;
 				}
 			}
-
+			public function addGallery($args, $repeater = false) {
+				$field = array_merge(array('type' => 'gallery'), $args);
+				if(!$repeater) {
+					$this->_fields[] = $field;
+				} else {
+					return $field;
+				}
+			}
 			public function addWysiwyg($args, $repeater = false) {
 				$field = array_merge(array('type' => 'wysiwyg'), $args);
 				if(!$repeater) {
@@ -370,7 +377,30 @@
 				);
 				$this->after_field();
 			}
+			
+			public function show_field_gallery($field, $meta) {
+				$this->before_field($field, $meta); // pass in $meta for preview image
+				
+					echo '<div class="metabox-section" style="display: block;overflow: hidden;" > <p class="input_c">';
+					echo sprintf(
+						'<button class="button gallery_upload_images " >%s</button>',
+						esc_html( sprintf('%s Image', empty($meta) ? 'Upload' : 'Change') )
+					);
+					echo sprintf(
+						'<input class="omb_images_url" type="hidden" id="%s" name="%s" value="%s">',
+						esc_attr( 'image-' . $field['id'] ),
+						esc_attr( $field['id'] ),
+						(isset($meta) ? $meta : '')
+					); 
+                	echo '<div style="width:100%;height:auto;" class="images-container">';
+					$images_urls = explode(';',$meta); 
+					foreach ($images_urls as $url) { 
+                       echo '<img  style="max-width:200px;padding:10px;float:left;" src="'.$url.'" />';
+                    } 
+                	echo '</div></p></div>';
 
+				$this->after_field();
+			}
 			public function show_field_wysiwyg($field, $meta) {
 				$this->before_field($field);
 				wp_editor($meta, $field['id']);
