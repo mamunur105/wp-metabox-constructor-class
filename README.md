@@ -41,6 +41,8 @@ After instantiating the above metabox, add a few fields to it.  Below is a list 
 - [Image Upload](https://github.com/MatthewKosloski/wp-metabox-constructor-class#image-upload)
 - [WYSIWYG Editor](https://github.com/MatthewKosloski/wp-metabox-constructor-class#wysiwyg-editor)
 - [Repeater](https://github.com/MatthewKosloski/wp-metabox-constructor-class#repeater)
+- [Select Field](https://github.com/MatthewKosloski/wp-metabox-constructor-class#Select-Field)
+- [Gallery image field ](https://github.com/MatthewKosloski/wp-metabox-constructor-class#Gallery-image-field)
 
 ### Text
 
@@ -95,6 +97,30 @@ $metabox->addRadio(
 	)
 );
 ```
+### Select Field
+```php
+$metabox->addSelect(array(
+	'id' => 'popups_select_field',
+	'label' => 'Image Size ',
+	'desc' => 'select image size ',
+	'options' => array(
+		'full' => "Full",
+		'popup-landscape' => "Landscape",
+		'popup-square' => 'Squere'
+	)
+));
+
+```
+
+```php
+### Number 
+$metabox->addNumber(array(
+	'id' => 'popups_delay',
+	'label' => 'Delay Time ',
+	'default' => 1,
+	'desc' => 'Delay timer Secound example:1 (1s)'
+));
+```
 
 ### Image Upload
 
@@ -106,6 +132,17 @@ $metabox->addImage(array(
 	'label' => 'Image Upload', // required
 	'desc' => 'An example description paragraph that appears below the label.'
 ));
+
+```
+### Gallery image field 
+```php
+
+$metabox->addGallery(array(
+	'id' => 'metabox_image_field_gallery_',
+	'label' => 'Gallery Image Upload Field',
+	'desc' => 'Upload an image, or change it, by clicking the button below the preview.'
+));
+
 ```
 
 ### WYSIWYG Editor
@@ -119,6 +156,53 @@ $metabox->addWysiwyg(array(
 	'desc' => 'An example description paragraph that appears below the label.'
 ));
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Repeater
 
