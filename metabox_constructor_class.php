@@ -265,6 +265,14 @@
 					return $field;
 				}			
 			}
+			public function addNumber($args, $repeater = false) {
+				$field = array_merge(array('type' => 'number'), $args);
+				if(false == $repeater) {
+					$this->_fields[] = $field;
+				} else {
+					return $field;
+				}			
+			}
 
 			public function addTextArea($args, $repeater = false) {
 				$field = array_merge(array('type' => 'textarea'), $args);
@@ -277,6 +285,14 @@
 
 			public function addCheckbox($args, $repeater = false) {
 				$field = array_merge(array('type' => 'checkbox'), $args);
+				if(!$repeater) {
+					$this->_fields[] = $field;
+				} else {
+					return $field;
+				}
+			}
+			public function addSelect($args, $repeater = false) {
+				$field = array_merge(array('type' => 'select'), $args);
 				if(!$repeater) {
 					$this->_fields[] = $field;
 				} else {
@@ -339,6 +355,19 @@
 				$this->after_field();
 			}
 
+			public function show_field_number($field, $meta) {				
+				$this->before_field($field);
+				if($meta == false){
+					$meta = isset($field['default']);
+				}
+				echo sprintf(
+					'<input type="number" class="%1$s" id="%2$s" name="%2$s" value="%3$s">',
+					esc_attr( $this->get_block_element_class_with_namespace($field['type']) ),
+					esc_attr( $field['id'] ),
+					esc_attr( $meta )
+				);
+				$this->after_field();
+			}
 			public function show_field_textarea($field, $meta) {
 				$this->before_field($field);
 				echo sprintf(
@@ -352,15 +381,37 @@
 
 			public function show_field_checkbox($field, $meta) {
 				$this->before_field($field);
+				if($meta == false){
+					$meta = isset($field['default']);
+				}
 				echo sprintf(
 					'<input type="checkbox" class="%1$s" id="%2$s" name="%2$s" %3$s>',
 					esc_attr( $this->get_block_element_class_with_namespace($field['type']) ),
 					esc_attr( $field['id'] ),
 					checked(!empty($meta), true, false)
+					// !empty($meta) ? $meta:'off'
 				);
 				$this->after_field($field); // pass in $field to render desc below input
 			}
+			public function show_field_select($field, $meta) {
+				$this->before_field($field);
+				
 
+					echo sprintf('<select name="%1$s" class="%2$s" id="%1$s">',esc_attr( $field['id'] ),esc_attr( $this->get_block_element_class_with_namespace($field['type']) ));
+						foreach ($field['options'] as $key => $value) {
+
+							$select = ($meta == $key) ?'selected':'';
+							
+							echo sprintf(
+								'<option value="%1$s" %3$s> %2$s </option>',
+								$key,$value,$select
+							);
+						}
+					echo '</select>';
+
+				$this->after_field($field); // pass in $field to render desc below input
+			}
+			
 			public function show_field_image($field, $meta) {
 				$this->before_field($field, $meta); // pass in $meta for preview image
 				echo sprintf(
@@ -403,25 +454,35 @@
 			}
 			public function show_field_wysiwyg($field, $meta) {
 				$this->before_field($field);
-				wp_editor($meta, $field['id']);
+				// wp_editor($meta, $field['id'],array( 'media_buttons' => false ));
+				// wp_editor
+				wp_editor($meta,$meta,array('textarea_name' => $field['id']));
+
 				$this->after_field();
 			}
 
 			public function show_field_radio($field, $meta) {
 				$this->before_field($field);
+				$i = 0;
+				$another = '';
 				foreach($field['options'] as $key => $value) {
+					if($i > 0){ $another = 'another-button';}
 					echo sprintf(
-					'
+					'	<div class="meta-radio-button %7$s">
 						<label for="%1$s">%2$s</label>
 						<input type="radio" class="%3$s" id="%1$s" name="%4$s" value="%5$s" %6$s>
-					',
+						</div>
+						',
 						esc_attr( $field['id'] . '_' . $key ),
 						esc_html( $value ),
 						esc_attr( $this->get_block_element_class_with_namespace($field['type']) ),
 						esc_attr( $field['id'] ),
 						esc_attr( $key ),
-						checked( $key == $meta, true, false )
+						checked( $key == $meta, true, false ),
+						$another
 					);
+
+					$i++;
 				}
 				$this->after_field($field); // pass in $field to render desc below input
 			}
@@ -436,7 +497,7 @@
 				);
 
 				$count = 0;
-				if(is_array($meta) &&  count($meta) > 0 ) {
+				if(is_array($meta) && count($meta) > 0 ) {
 					foreach($meta as $m) {
 						$this->get_repeated_block($field, $m, $count);
 						$count++;
@@ -548,4 +609,3 @@
 
 	endif;
 
-?>
