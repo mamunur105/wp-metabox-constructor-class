@@ -4,9 +4,11 @@ This is a PHP class that allows WordPress plugin developers to easily create cus
 
 Adapted from [My-Meta-Box](https://github.com/bainternet/My-Meta-Box).
 
-- [Installation](https://github.com/MatthewKosloski/wp-metabox-constructor-class#installation)
-- [Usage](https://github.com/MatthewKosloski/wp-metabox-constructor-class#usage)
-- [Available Fields](https://github.com/MatthewKosloski/wp-metabox-constructor-class#available-fields)
+[fork from](https://github.com/MatthewKosloski/wp-metabox-constructor-clas)
+
+- [Installation](https://github.com/mamunur105/wp-metabox-constructor-class#installation)
+- [Usage](https://github.com/mamunur105/wp-metabox-constructor-class#usage)
+- [Available Fields](https://github.com/mamunur105/wp-metabox-constructor-class#available-fields)
 
 ![Demo photo](https://i.imgur.com/rm5dpsT.jpg)
 
@@ -34,15 +36,16 @@ $metabox = new Metabox_Constructor(array(
 
 After instantiating the above metabox, add a few fields to it.  Below is a list of the available fields.  Click on one to see how to implement it.
 
-- [Text](https://github.com/MatthewKosloski/wp-metabox-constructor-class#text)
-- [Textarea](https://github.com/MatthewKosloski/wp-metabox-constructor-class#textarea)
-- [Checkbox](https://github.com/MatthewKosloski/wp-metabox-constructor-class#checkbox)
-- [Radio](https://github.com/MatthewKosloski/wp-metabox-constructor-class#radio)
-- [Image Upload](https://github.com/MatthewKosloski/wp-metabox-constructor-class#image-upload)
-- [WYSIWYG Editor](https://github.com/MatthewKosloski/wp-metabox-constructor-class#wysiwyg-editor)
-- [Repeater](https://github.com/MatthewKosloski/wp-metabox-constructor-class#repeater)
-- [Select Field](https://github.com/MatthewKosloski/wp-metabox-constructor-class#Select-Field)
-- [Gallery image field ](https://github.com/MatthewKosloski/wp-metabox-constructor-class#Gallery-image-field)
+- [Text](https://github.com/mamunur105/wp-metabox-constructor-class#text)
+- [Textarea](https://github.com/mamunur105/wp-metabox-constructor-class#textarea)
+- [Checkbox](https://github.com/mamunur105/wp-metabox-constructor-class#checkbox)
+- [Radio](https://github.com/mamunur105/wp-metabox-constructor-class#radio)
+- [Image Upload](https://github.com/mamunur105/wp-metabox-constructor-class#image-upload)
+- [WYSIWYG Editor](https://github.com/mamunur105/wp-metabox-constructor-class#wysiwyg-editor)
+- [Repeater](https://github.com/mamunur105/wp-metabox-constructor-class#repeater)
+- [Select Field](https://github.com/mamunur105/wp-metabox-constructor-class#Select-Field)
+- [Number](https://github.com/mamunur105/wp-metabox-constructor-class#Number)
+- [Gallery image field ](https://github.com/mamunur105/wp-metabox-constructor-class#Gallery-image-field)
 
 ### Text
 
@@ -58,7 +61,7 @@ $metabox->addText(array(
 
 ### Textarea
 
-Textareas are used to store a body of text.  For a richer experience with HTML, see the [WYSIWYG](https://github.com/MatthewKosloski/wp-metabox-constructor-class#wysiwyg-editor) editor.
+Textareas are used to store a body of text.  For a richer experience with HTML, see the [WYSIWYG](https://github.com/mamunur105/wp-metabox-constructor-class#wysiwyg-editor) editor.
 
 ```php
 $metabox->addTextArea(array(
@@ -111,9 +114,9 @@ $metabox->addSelect(array(
 ));
 
 ```
-
-```php
 ### Number 
+```php
+
 $metabox->addNumber(array(
 	'id' => 'popups_delay',
 	'label' => 'Delay Time ',
@@ -124,7 +127,7 @@ $metabox->addNumber(array(
 
 ### Image Upload
 
-Use this to permit users to upload an image within the metabox.  Pro tip: use this with the [repeater](https://github.com/MatthewKosloski/wp-metabox-constructor-class#repeater) to dynamically manage the photos within a gallery or slideshow.
+Use this to permit users to upload an image within the metabox.  Pro tip: use this with the [repeater](https://github.com/mamunur105/wp-metabox-constructor-class#repeater) to dynamically manage the photos within a gallery or slideshow.
 
 ```php
 $metabox->addImage(array(
@@ -156,51 +159,6 @@ $metabox->addWysiwyg(array(
 	'desc' => 'An example description paragraph that appears below the label.'
 ));
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
